@@ -5,6 +5,11 @@
 	fontFamily: "Open Sans";
 }
 
+@font-face {
+    src: url("../assets/font/arial.ttf");
+    fontFamily: "Arial";
+}
+
 global {
 	/* main theme color */
 	tintColor: #E9212D;

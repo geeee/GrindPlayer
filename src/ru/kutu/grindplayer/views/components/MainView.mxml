@@ -1,36 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		 xmlns:s="library://ns.adobe.com/flex/spark"
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+         xmlns:s="library://ns.adobe.com/flex/spark"
 		 xmlns:components="ru.kutu.grindplayer.views.components.*"
-		 mouseEnabled="false"
+         mouseEnabled="false"
 		 implements="ru.kutu.grind.views.api.IMainView"
 		 >
 	
 	<fx:Script>
 		<![CDATA[
-			
-			[Embed(source="/../assets/logo.swf", symbol="logo")]
-			[Bindable]
-			public var logo:Class;
-			
-			public function set errorText(value:String):void {
-				errorDisplay.text = value;
-			}
-			
-			public function initializing():void {
-				currentState = "initializing";
-			}
-			
-			public function ready():void {
-				currentState = "ready";
-			}
-			
-			public function error():void {
-				currentState = "error";
-			}
-			
-			
-		]]>
+
+        [Embed(source="/../assets/logo.swf", symbol="logo")]
+        [Bindable]
+        public var logo:Class;
+
+        public function set errorText(value:String):void {
+            //errorDisplay.text = value;
+        }
+
+        public function initializing():void {
+            currentState = "initializing";
+            rotateForward.stop();
+            rotateForward.play([spin]);
+        }
+
+        public function ready():void {
+            rotateForward.stop();
+            currentState = "ready";
+        }
+
+        public function error():void {
+            currentState = "error";
+            rotateForward.stop();
+            rotateForward.play([spin]);
+        }
+
+        ]]>
 	</fx:Script>
 	
 	<s:states>
@@ -40,30 +44,48 @@
 	</s:states>
 	
 	<s:SWFLoader source="{logo}" right="10" top="10" alpha="0.7" width="80" height="62" />
-	
-	<s:Label
-		mouseEnabled="false"
-		verticalCenter="0"
-		horizontalCenter="0"
-		text="{resourceManager.getString('Main', 'initializing')}"
-		includeIn="initializing"
-		/>
-	
+
 	<components:PlayerView
 		left="0" right="0"
 		top="0" bottom="0"
 		visible="false"
 		visible.ready="true"
 		/>
-	
-	<s:Label
+
+    <fx:Declarations>
+        <s:Rotate id="rotateForward" angleBy="360" repeatCount="0" easer="{null}" duration="1000" applyChangesPostLayout="true"
+                  autoCenterTransform="true" suspendBackgroundProcessing="true"/>
+    </fx:Declarations>
+
+    <s:Label
 		id="errorDisplay"
-		width="80%"
-		mouseEnabled="false"
-		verticalCenter="0"
-		horizontalCenter="0"
-		includeIn="error"
+		width="100%"
+		bottom="55"
+		includeIn="error,initializing"
 		itemCreationPolicy="immediate"
+        fontFamily="Arial"
+        fontSize="40"
+        text="Please stand by"
+        textAlign="center"
 		/>
-	
+
+    <s:Label
+        width="100%"
+        bottom="25"
+        includeIn="error,initializing"
+        itemCreationPolicy="immediate"
+        fontFamily="Arial"
+        fontSize="22"
+        text="Broadcast has not started yet"
+        textAlign="center"
+        />
+
+    <s:Image id="spin"
+         source="@Embed(source='/../assets/skin/spin.png')"
+         includeIn="error,initializing"
+         verticalCenter="0"
+         horizontalCenter="0"
+         smooth="true"
+        />
+
 </s:Group>
