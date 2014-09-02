@@ -62,7 +62,7 @@
 		<s:State name="error" />
 	</s:states>
 	
-	<s:SWFLoader source="{logo}" right="10" top="10" alpha="0.7" width="80" height="62" />
+	<s:SWFLoader source="{logo}" right="10" top="10" alpha="1" width="80" height="62" />
 
 	<components:PlayerView
 		left="0" right="0"
