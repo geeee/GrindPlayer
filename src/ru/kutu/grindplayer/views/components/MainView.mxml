@@ -12,6 +12,9 @@
         [Embed(source="/../assets/logo.swf", symbol="logo")]
         [Bindable]
         public var logo:Class;
+        public const COUNT_DOWN:Number = 42;
+        public var timeLeft:Number = COUNT_DOWN;
+        public var counDownTimer:Number;
 
         public function set errorText(value:String):void {
             //errorDisplay.text = value;
@@ -19,25 +22,41 @@
 
         public function initializing():void {
             currentState = "initializing";
-            rotateForward.stop();
-            rotateForward.play([spin]);
+            startCountDown();
         }
 
         public function ready():void {
-            rotateForward.stop();
             currentState = "ready";
+            rotateForward.stop();
+            clearInterval(counDownTimer);
+            counDownTimer = 0;
+        }
+
+        public function updateTimeLeft():void {
+            timeLeft -= 1;
+            if (timeLeft < 0) {
+                timeLeft = COUNT_DOWN;
+            }
+            timeLeftLabel.text = "" + timeLeft;
+        }
+
+        public function startCountDown():void {
+            if (!counDownTimer) {
+                rotateForward.play([spin]);
+                timeLeft = COUNT_DOWN;
+                counDownTimer = setInterval(updateTimeLeft, 1000);
+            }
         }
 
         public function error():void {
             currentState = "error";
-            rotateForward.stop();
-            rotateForward.play([spin]);
+            startCountDown();
         }
 
         ]]>
 	</fx:Script>
-	
-	<s:states>
+
+    <s:states>
 		<s:State name="initializing" />
 		<s:State name="ready" />
 		<s:State name="error" />
@@ -58,24 +77,37 @@
     </fx:Declarations>
 
     <s:Label
+            id="timeLeftLabel"
+            width="100%"
+            verticalCenter="7"
+            includeIn="error,initializing"
+            itemCreationPolicy="immediate"
+            fontFamily="Arial"
+            fontSize="80"
+            text="42"
+            textAlign="center"
+            />
+
+
+    <s:Label
 		id="errorDisplay"
 		width="100%"
-		bottom="55"
+		bottom="45"
 		includeIn="error,initializing"
 		itemCreationPolicy="immediate"
         fontFamily="Arial"
-        fontSize="40"
+        fontSize="33"
         text="Please stand by"
         textAlign="center"
 		/>
 
     <s:Label
         width="100%"
-        bottom="25"
+        bottom="20"
         includeIn="error,initializing"
         itemCreationPolicy="immediate"
         fontFamily="Arial"
-        fontSize="22"
+        fontSize="18"
         text="Broadcast has not started yet"
         textAlign="center"
         />
@@ -86,6 +118,7 @@
          verticalCenter="0"
          horizontalCenter="0"
          smooth="true"
+
         />
 
 </s:Group>

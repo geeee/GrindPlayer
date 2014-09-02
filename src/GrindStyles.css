@@ -47,7 +47,7 @@ global {
 }
 
 s|Application {
-	backgroundColor: #000000;
+	backgroundColor: #2A2A2A;
 	backgroundAlpha: 0;
 	color: #F7F7F7;
 	fontFamily: "Open Sans";
