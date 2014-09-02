@@ -19,8 +19,8 @@ global {
 	controlBarBackgroundAlpha: 0.6;
 
 	/* control bar buttons */
-	controlBarIconColor: #757575;
-	controlBarIconColorOver: #959595;
+	controlBarIconColor: #FFFFFF;
+	controlBarIconColorOver: #dadada;
 
 	/* scrub bar */
 	scurbBarThumbColor: #EAEAEA;
