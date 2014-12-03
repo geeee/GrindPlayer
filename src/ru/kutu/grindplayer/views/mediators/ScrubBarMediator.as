@@ -16,7 +16,7 @@ package ru.kutu.grindplayer.views.mediators {
 		
 		override protected function updateEnabled():void {
 			view.enabled = isStartPlaying;
-			view.visible = streamType != StreamType.LIVE && !hideScrubBarWhileAdvertisement;
+			view.visible = !hideScrubBarWhileAdvertisement;
 		}
 		
 		private function onAdvertisement(event:AdvertisementEvent):void {
