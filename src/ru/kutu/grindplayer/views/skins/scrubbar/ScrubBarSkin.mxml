@@ -92,7 +92,7 @@
 		<!-- played bar -->
 		<s:Rect
 			id="playedBar"
-			width="{thumb.x}"
+			width="{thumb.x + (thumb.width * thumb.scaleX) / 2}"
 			top="0" bottom="0"
 			>
 			<s:fill>

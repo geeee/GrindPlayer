@@ -14,7 +14,7 @@
 			
 			override public function set data(value:Object):void {
 				super.data = value;
-				labelDisplay.text = FormatTime.formatTime(Number(value));
+				labelDisplay.text = String(value);
 				arrow.x = 0;
 				validateNow();
 			}
