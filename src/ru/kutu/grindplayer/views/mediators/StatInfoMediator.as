@@ -22,7 +22,7 @@ package ru.kutu.grindplayer.views.mediators {
 			// context menu item
 			cmItem = new ContextMenuItem(null);
 			cmItem.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT, onContextMenuShowStatInfo);
-			contextView.view.contextMenu.customItems.push(cmItem);
+			//contextView.view.contextMenu.customItems.push(cmItem);
 			
 			// localization "show statistics" caption
 			ResourceManager.getInstance().addEventListener(Event.CHANGE, onResourceManagerChange);
