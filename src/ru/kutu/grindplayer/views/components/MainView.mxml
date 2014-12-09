@@ -59,8 +59,8 @@
 		<s:State name="error" />
 	</s:states>
 
-    <s:BitmapImage id="logo" source="@Embed(source='/../assets/skin/live4_logo.png')"
-                   width="43" height="36" right="16" top="16"/>
+    <s:Image top="16" right="16" source="@Embed(source='/../assets/skin/live4_logo.png')"
+             smooth="true" smoothingQuality="high" />
 
 	<components:PlayerView
 		left="0" right="0"
