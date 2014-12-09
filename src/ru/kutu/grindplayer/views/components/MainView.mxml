@@ -9,9 +9,6 @@
 	<fx:Script>
 		<![CDATA[
 
-        [Embed(source="/../assets/logo.swf", symbol="logo")]
-        [Bindable]
-        public var logo:Class;
         public const COUNT_DOWN:Number = 42;
         public var timeLeft:Number = COUNT_DOWN;
         public var counDownTimer:Number;
@@ -61,8 +58,9 @@
 		<s:State name="ready" />
 		<s:State name="error" />
 	</s:states>
-	
-	<s:SWFLoader source="{logo}" right="16" top="16" alpha="1" width="56" height="44" />
+
+    <s:BitmapImage id="logo" source="@Embed(source='/../assets/skin/live4_logo.png')"
+                   width="43" height="36" right="16" top="16"/>
 
 	<components:PlayerView
 		left="0" right="0"
