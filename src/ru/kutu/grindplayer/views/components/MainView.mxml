@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
          xmlns:s="library://ns.adobe.com/flex/spark"
-		 xmlns:components="ru.kutu.grindplayer.views.components.*"
+         xmlns:components="ru.kutu.grindplayer.views.components.*"
          mouseEnabled="false"
-		 implements="ru.kutu.grind.views.api.IMainView"
-		 >
+         implements="ru.kutu.grind.views.api.IMainView"
+        >
 
-	<fx:Script>
+    <fx:Script>
 		<![CDATA[
 
-        [Embed(source="/../assets/logo.swf", symbol="logo")]
-        [Bindable]
-        public var logo:Class;
         public const COUNT_DOWN:Number = 42;
         public var timeLeft:Number = COUNT_DOWN;
         public var counDownTimer:Number;
@@ -57,19 +54,20 @@
 	</fx:Script>
 
     <s:states>
-		<s:State name="initializing" />
-		<s:State name="ready" />
-		<s:State name="error" />
-	</s:states>
+        <s:State name="initializing" />
+        <s:State name="ready" />
+        <s:State name="error" />
+    </s:states>
 
-    <s:SWFLoader source="{logo}" right="16" top="16" alpha="1" width="56" height="44" />
+    <s:Image top="16" right="16" width="43" height="36" source="@Embed(source='/../assets/skin/live4logo45by36.png')"
+             smooth="true" smoothingQuality="high" />
 
-	<components:PlayerView
-		left="0" right="0"
-		top="0" bottom="0"
-		visible="false"
-		visible.ready="true"
-		/>
+    <components:PlayerView
+            left="0" right="0"
+            top="0" bottom="0"
+            visible="false"
+            visible.ready="true"
+            />
 
     <fx:Declarations>
         <s:Rotate id="rotateForward" angleBy="360" repeatCount="0" easer="{null}" duration="1000" applyChangesPostLayout="true"
@@ -90,35 +88,35 @@
 
 
     <s:Label
-		id="errorDisplay"
-		width="100%"
-		bottom="45"
-		includeIn="error,initializing"
-		itemCreationPolicy="immediate"
-        fontFamily="Arial"
-        fontSize="33"
-        text="Please stand by"
-        textAlign="center"
-		/>
+            id="errorDisplay"
+            width="100%"
+            bottom="45"
+            includeIn="error,initializing"
+            itemCreationPolicy="immediate"
+            fontFamily="Arial"
+            fontSize="33"
+            text="Please stand by"
+            textAlign="center"
+            />
 
     <s:Label
-        width="100%"
-        bottom="20"
-        includeIn="error,initializing"
-        itemCreationPolicy="immediate"
-        fontFamily="Arial"
-        fontSize="18"
-        text="Broadcast has not started yet"
-        textAlign="center"
-        />
+            width="100%"
+            bottom="20"
+            includeIn="error,initializing"
+            itemCreationPolicy="immediate"
+            fontFamily="Arial"
+            fontSize="18"
+            text="Broadcast has not started yet"
+            textAlign="center"
+            />
 
     <s:Image id="spin"
-         source="@Embed(source='/../assets/skin/spin.png')"
-         includeIn="error,initializing"
-         verticalCenter="0"
-         horizontalCenter="0"
-         smooth="true"
+             source="@Embed(source='/../assets/skin/spin.png')"
+             includeIn="error,initializing"
+             verticalCenter="0"
+             horizontalCenter="0"
+             smooth="true"
 
-        />
+            />
 
 </s:Group>
