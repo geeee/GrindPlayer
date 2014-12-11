@@ -29,6 +29,13 @@
             counDownTimer = 0;
         }
 
+        public function complete():void {
+            currentState = "complete";
+            rotateForward.stop();
+            clearInterval(counDownTimer);
+            counDownTimer = 0;
+        }
+
         public function updateTimeLeft():void {
             timeLeft -= 1;
             if (timeLeft < 0) {
@@ -50,17 +57,19 @@
             startCountDown();
         }
 
+        public function get state():String {
+            return currentState;
+        }
+
         ]]>
 	</fx:Script>
 
     <s:states>
         <s:State name="initializing" />
         <s:State name="ready" />
+        <s:State name="complete" />
         <s:State name="error" />
     </s:states>
-
-    <s:Image top="16" right="16" width="43" height="36" source="@Embed(source='/../assets/skin/live4logo45by36.png')"
-             smooth="true" smoothingQuality="high" />
 
     <components:PlayerView
             left="0" right="0"
@@ -85,6 +94,20 @@
             text="42"
             textAlign="center"
             />
+
+    <s:Group buttonMode="true" id="playAgain" includeIn="complete" width="100%" height="100%" top="0" left="0" >
+        <s:Rect width="100%" height="100%" top="0" left="0" >
+            <s:fill>
+                <s:SolidColor color="0x000000" alpha=".6"/>
+            </s:fill>
+        </s:Rect>
+        <s:Image
+             source="@Embed(source='/../assets/skin/playagainbtn.png')"
+             verticalCenter="0"
+             horizontalCenter="0"
+             smooth="true"
+        />
+    </s:Group>
 
 
     <s:Label
@@ -118,5 +141,8 @@
              smooth="true"
 
             />
+
+    <s:Image top="16" right="16" width="45" height="36" source="@Embed(source='/../assets/skin/live4logo45by36.png')"
+             smooth="true" smoothingQuality="high" />
 
 </s:Group>
